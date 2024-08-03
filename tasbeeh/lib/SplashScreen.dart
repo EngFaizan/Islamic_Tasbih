@@ -14,7 +14,7 @@ class SplashScreenState extends State<Splashscreen>{
     Timer(const Duration(seconds: 3), () {
       // Navigate to the home screen after 3 seconds
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => const HomePage(title: "Tasbeeh Counter"),
+        builder: (context) => const HomePage(),
       ));
     });
   }
@@ -27,7 +27,9 @@ class SplashScreenState extends State<Splashscreen>{
           width: double.infinity,
           height: double.infinity,
           color: Theme.of(context).colorScheme.inversePrimary,
-          child: Image.asset('assets/images/background.png'),
+          child: Image.asset('assets/images/splashscreen.png',
+            fit: BoxFit.contain,
+          ),
         )
       ),
     );
