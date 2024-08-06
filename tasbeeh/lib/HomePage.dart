@@ -67,31 +67,60 @@ class HomePageState extends State<HomePage> {
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: _tasbeehat.length,
-              itemBuilder: (context, index) {
-                var tasbeeh = _tasbeehat[index];
-                return ListTile(
-                  title: Text(tasbeeh['tasbeeh']),
-                  subtitle: Text('Max Count: ${tasbeeh['maxCount']} | Cycles: ${tasbeeh['totalCycles']}'),
-                  onTap: () => _navigateToTasbeehCounter(tasbeeh),
-                );
-              },
+      body: Container(
+        color: Colors.lightBlue,
+        child: Column(
+          children: [
+            Image.asset('assets/images/masjid.webp'),
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _tasbeehat.length,
+                itemBuilder: (context, index) {
+                  var tasbeeh = _tasbeehat[index];
+                  return Card(
+                    color: Colors.purple,
+                    elevation: 5,
+                    margin: const EdgeInsets.all(10),
+                    child: ListTile(
+                      title: Text(tasbeeh['tasbeeh'],
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500
+                        ),
+                      ),
+                      subtitle: Text('Max Count: ${tasbeeh['maxCount']}',
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500
+                        ),
+                      ),
+                      trailing: Text('Cycles: ${tasbeeh['totalCycles']}',
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500
+                        ),
+                      ),
+                      onTap: () => _navigateToTasbeehCounter(tasbeeh),
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white.withOpacity(0.3),
-                side: const BorderSide(color: Colors.black, width: 2)
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white.withOpacity(0.5),
+                  side: const BorderSide(color: Colors.black, width: 2)
+              ),
+              onPressed: _navigateToAddTasbeeh,
+              child: const Icon(Icons.add, color: Colors.deepPurple, size: 50,),
             ),
-            onPressed: _navigateToAddTasbeeh,
-            child: const Icon(Icons.add, color: Colors.deepPurple, size: 50,),
-          ),
-          const SizedBox(height: 20,)
-        ],
+            const SizedBox(height: 20,)
+          ],
+        ),
       ),
     );
   }
